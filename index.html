@@ -174,19 +174,19 @@
 </template>
 
 <script>
-  let fireballSize = 22;
-  let getFireballSpeed = function(left) {
+  var fireballSize = 22;
+  var getFireballSpeed = function(left) {
     if (left) {
       return 5;
     }
 
     return 2;
   };
-  let wizardSpeed = 3;
-  let wizardWidth = 70;
-  const WIZZARD_HEIGHT_MODIFICATOR = 1.337
-  let getWizardHeight = function(wizardWidth) {
-    return WIZZARD_HEIGHT_MODIFICATOR * wizardWidth;
+  var wizardSpeed = 3;
+  var wizardWidth = 70;
+  var WIZARD_HEIGHT_MODIFICATOR = 1.337
+  var getWizardHeight = function(wizardWidth) {
+    return WIZARD_HEIGHT_MODIFICATOR * wizardWidth;
   };
 
   function getWizardX(width) {
@@ -194,8 +194,6 @@
   };
 
   function getWizardY(height) {
-    console.log(height)
-    console.log(height * 2 / 3)
     return height * 2 / 3;
   };
 </script>
