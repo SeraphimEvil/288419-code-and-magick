@@ -31,7 +31,7 @@ window.renderStatistics = function (ctx, names, times) {
 
   var max = -1;
 
-  for (var j = 0 ; j < times.length; j++) {
+  for (var j = 0; j < times.length; j++) {
     var time = times[j];
     if (time > max) {
       max = time;
