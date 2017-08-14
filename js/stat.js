@@ -1,6 +1,6 @@
 'use strict';
 
-window.renderStatistics = function(ctx, names, times) {
+window.renderStatistics = function (ctx, names, times) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.strokeStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.beginPath();
@@ -31,8 +31,8 @@ window.renderStatistics = function(ctx, names, times) {
 
   var max = -1;
 
-  for (var i = 0 ; i < times.length; i++) {
-    var time = times[i];
+  for (var j = 0 ; j < times.length; j++) {
+    var time = times[j];
     if (time > max) {
       max = time;
     }
@@ -57,7 +57,7 @@ window.renderStatistics = function(ctx, names, times) {
     ctx.fillText(names[i], initialX + indent * i, initialY + resultViewСoefficient);
     ctx.fillText(times[i], initialX + indent * i, (step * times[i]) - resultViewСoefficient);
 
-    ctx.fillStyle = 'rgba(0, 0, 255, '+randomOpacity+')';
+    ctx.fillStyle = 'rgba(0, 0, 255, ' + randomOpacity + ')';
 
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
