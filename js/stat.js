@@ -46,7 +46,7 @@ var findMax = function (times) {
   return Math.max.apply(Math, times);
 };
 
-var drawHistogram = function (ctx, INITIAL_X, INDENT, INITIAL_Y, index, step, time) {
+var drawHistogram = function (ctx, index, step, time) {
   ctx.beginPath();
   ctx.moveTo(INITIAL_X + INDENT * index, INITIAL_Y);
   ctx.lineTo(INITIAL_X + HISTOGRAM_WIDTH + INDENT * index, INITIAL_Y);
@@ -63,7 +63,7 @@ var drawStatistic = function (ctx, names, times) {
 
 
   times
-    .forEach(function (time, index) {
+      .forEach(function (time, index) {
         time = Math.floor(time);
         randomOpacity = Math.random();
 
@@ -78,8 +78,8 @@ var drawStatistic = function (ctx, names, times) {
           ctx.fillStyle = 'rgba(255, 0, 0, 1)';
         }
 
-        drawHistogram(ctx, INITIAL_X, INDENT, INITIAL_Y, index, step, time);
-    });
+        drawHistogram(ctx, index, step, time);
+      });
 };
 
 window.renderStatistics = function (ctx, names, times) {
