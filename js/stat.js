@@ -1,6 +1,6 @@
 'use strict';
 
-var createResultField = (ctx) => {
+var createResultField = function (ctx) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.strokeStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.beginPath();
@@ -23,7 +23,7 @@ var createResultField = (ctx) => {
   ctx.fill();
 };
 
-var typeMessageOnField = (ctx) => {
+var typeMessageOnField = function (ctx) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.font = '16px PT Mono';
 
@@ -34,7 +34,7 @@ var typeMessageOnField = (ctx) => {
   ctx.fillText(RESULT_LIST_MESSAGE, 120, 60);
 };
 
-var findMax = (times) => {
+var findMax = function (times) {
   return Math.max.apply(null, times);
 };
 
