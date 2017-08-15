@@ -38,17 +38,15 @@ var findMax = function (times) {
   return Math.max.apply(null, times);
 };
 
-window.renderStatistics = function (ctx, names, times) {
-  createResultField(ctx);
-  typeMessageOnField(ctx);
-
+var showStatistic = function (ctx, names, times) {
   var max = findMax(times);
   var HISTOGRAM_WIDTH = 40;
   var HISTOGRAM_HEIGHT = 150;
   var INDENT = 50 + HISTOGRAM_WIDTH;
   var INITIAL_X = 150;
-  var INITIAL_Y = 250;
-  var RESULT_VIEW_COEFFICIENT = 20;
+  var INITIAL_Y = 240;
+  var RESULT_VIEW_NAME_COEFFICIENT = 20;
+  var RESULT_VIEW_TIME_COEFFICIENT = 10;
 
   var randomOpacity;
   var step = HISTOGRAM_HEIGHT / (max - 0);
@@ -60,8 +58,8 @@ window.renderStatistics = function (ctx, names, times) {
 
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
 
-    ctx.fillText(names[i], INITIAL_X + INDENT * i, INITIAL_Y + RESULT_VIEW_COEFFICIENT);
-    ctx.fillText(times[i], INITIAL_X + INDENT * i, (step * times[i]) - RESULT_VIEW_COEFFICIENT);
+    ctx.fillText(names[i], INITIAL_X + INDENT * i, INITIAL_Y + RESULT_VIEW_NAME_COEFFICIENT);
+    ctx.fillText(times[i], INITIAL_X + INDENT * i, (step * times[i]) - RESULT_VIEW_TIME_COEFFICIENT);
 
     ctx.fillStyle = 'rgba(0, 0, 255, ' + randomOpacity + ')';
 
@@ -77,4 +75,10 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.closePath();
     ctx.fill();
   }
+};
+
+window.renderStatistics = function (ctx, names, times) {
+  createResultField(ctx);
+  typeMessageOnField(ctx);
+  showStatistic(ctx, names, times);
 };
