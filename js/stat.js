@@ -59,7 +59,7 @@ var showStatistic = function (ctx, names, times) {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
 
     ctx.fillText(names[i], INITIAL_X + INDENT * i, INITIAL_Y + RESULT_VIEW_NAME_COEFFICIENT);
-    ctx.fillText(times[i], INITIAL_X + INDENT * i, (step * times[i]) - RESULT_VIEW_TIME_COEFFICIENT);
+    ctx.fillText(times[i], INITIAL_X + INDENT * i, INITIAL_Y - (step * times[i]) - RESULT_VIEW_TIME_COEFFICIENT);
 
     ctx.fillStyle = 'rgba(0, 0, 255, ' + randomOpacity + ')';
 
@@ -70,8 +70,8 @@ var showStatistic = function (ctx, names, times) {
     ctx.beginPath();
     ctx.moveTo(INITIAL_X + INDENT * i, INITIAL_Y);
     ctx.lineTo((INITIAL_X + HISTOGRAM_WIDTH) + INDENT * i, INITIAL_Y);
-    ctx.lineTo((INITIAL_X + HISTOGRAM_WIDTH) + INDENT * i, step * times[i]);
-    ctx.lineTo(INITIAL_X + INDENT * i, step * times[i]);
+    ctx.lineTo((INITIAL_X + HISTOGRAM_WIDTH) + INDENT * i, INITIAL_Y - step * times[i]);
+    ctx.lineTo(INITIAL_X + INDENT * i, INITIAL_Y - step * times[i]);
     ctx.closePath();
     ctx.fill();
   }
