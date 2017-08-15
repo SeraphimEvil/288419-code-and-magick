@@ -10,26 +10,43 @@ var INITIAL_Y = 240;
 var RESULT_VIEW_NAME_COEFFICIENT = 20;
 var RESULT_VIEW_TIME_COEFFICIENT = 10;
 
+var resultField = {
+  positionX: 100,
+  positionY: 10,
+  width: 420,
+  height: 270
+};
+
+var resultFieldShadow = {};
+
+for (var value in resultField) {
+  resultFieldShadow[value] = resultField[value];
+}
+
+resultFieldShadow.positionX += 10;
+resultFieldShadow.positionY += 10;
+
+
+var drawResultFieldShadow = function (ctx) {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+
+  ctx.beginPath();
+  ctx.moveTo(resultFieldShadow.positionX, resultFieldShadow.positionY);
+  ctx.lineTo(resultFieldShadow.positionX + resultFieldShadow.width, resultFieldShadow.positionY);
+  ctx.lineTo(resultFieldShadow.positionX + resultFieldShadow.width, resultFieldShadow.positionY + resultFieldShadow.height);
+  ctx.lineTo(resultFieldShadow.positionX, resultFieldShadow.positionY + resultFieldShadow.height);
+  ctx.closePath();
+  ctx.fill();
+};
 
 var drawResultField = function (ctx) {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-  ctx.strokeStyle = 'rgba(0, 0, 0, 0.7)';
-  ctx.beginPath();
-  ctx.moveTo(110, 20);
-  ctx.lineTo(530, 20);
-  ctx.lineTo(530, 290);
-  ctx.lineTo(110, 290);
-  ctx.closePath();
-  ctx.stroke();
-  ctx.fill();
-
-
   ctx.fillStyle = '#fff';
+
   ctx.beginPath();
-  ctx.moveTo(100, 10);
-  ctx.lineTo(520, 10);
-  ctx.lineTo(520, 280);
-  ctx.lineTo(100, 280);
+  ctx.moveTo(resultField.positionX, resultField.positionY);
+  ctx.lineTo(resultField.positionX + resultField.width, resultField.positionY);
+  ctx.lineTo(resultField.positionX + resultField.width, resultField.positionY + resultField.height);
+  ctx.lineTo(resultField.positionX, resultField.positionY + resultField.height);
   ctx.closePath();
   ctx.fill();
 };
@@ -83,6 +100,7 @@ var drawStatistic = function (ctx, names, times) {
 };
 
 window.renderStatistics = function (ctx, names, times) {
+  drawResultFieldShadow(ctx);
   drawResultField(ctx);
   typeMessageField(ctx);
   drawStatistic(ctx, names, times);
