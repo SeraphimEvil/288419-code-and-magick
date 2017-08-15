@@ -1,6 +1,17 @@
 'use strict';
 
-var createResultField = function (ctx) {
+var GZ_MESSAGE = 'Ура вы победили!';
+var RESULT_LIST_MESSAGE = 'Список результатов:';
+var HISTOGRAM_WIDTH = 40;
+var HISTOGRAM_HEIGHT = 150;
+var INDENT = 50 + HISTOGRAM_WIDTH;
+var INITIAL_X = 150;
+var INITIAL_Y = 240;
+var RESULT_VIEW_NAME_COEFFICIENT = 20;
+var RESULT_VIEW_TIME_COEFFICIENT = 10;
+
+
+var drawResultField = function (ctx) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.strokeStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.beginPath();
@@ -23,31 +34,20 @@ var createResultField = function (ctx) {
   ctx.fill();
 };
 
-var typeMessageOnField = function (ctx) {
+var typeMessageField = function (ctx) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.font = '16px PT Mono';
-
-  var GZ_MESSAGE = 'Ура вы победили!';
-  var RESULT_LIST_MESSAGE = 'Список результатов:';
 
   ctx.fillText(GZ_MESSAGE, 120, 40);
   ctx.fillText(RESULT_LIST_MESSAGE, 120, 60);
 };
 
 var findMax = function (times) {
-  return Math.max.apply(null, times);
+  return Math.max.apply(Math, times);
 };
 
-var showStatistic = function (ctx, names, times) {
+var drawStatistic = function (ctx, names, times) {
   var max = findMax(times);
-  var HISTOGRAM_WIDTH = 40;
-  var HISTOGRAM_HEIGHT = 150;
-  var INDENT = 50 + HISTOGRAM_WIDTH;
-  var INITIAL_X = 150;
-  var INITIAL_Y = 240;
-  var RESULT_VIEW_NAME_COEFFICIENT = 20;
-  var RESULT_VIEW_TIME_COEFFICIENT = 10;
-
   var randomOpacity;
   var step = HISTOGRAM_HEIGHT / (max - 0);
 
@@ -78,7 +78,7 @@ var showStatistic = function (ctx, names, times) {
 };
 
 window.renderStatistics = function (ctx, names, times) {
-  createResultField(ctx);
-  typeMessageOnField(ctx);
-  showStatistic(ctx, names, times);
+  drawResultField(ctx);
+  typeMessageField(ctx);
+  drawStatistic(ctx, names, times);
 };
