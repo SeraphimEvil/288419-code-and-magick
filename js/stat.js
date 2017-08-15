@@ -46,7 +46,7 @@ var findMax = function (times) {
   return Math.max.apply(Math, times);
 };
 
-var drawHistogram = function(ctx, INITIAL_X, INDENT, INITIAL_Y, index, step, time) {
+var drawHistogram = function (ctx, INITIAL_X, INDENT, INITIAL_Y, index, step, time) {
   ctx.beginPath();
   ctx.moveTo(INITIAL_X + INDENT * index, INITIAL_Y);
   ctx.lineTo(INITIAL_X + HISTOGRAM_WIDTH + INDENT * index, INITIAL_Y);
@@ -63,23 +63,23 @@ var drawStatistic = function (ctx, names, times) {
 
 
   times
-    .forEach( function (time, index) {
-      time = Math.floor(time);
-      randomOpacity = Math.random();
+    .forEach(function (time, index) {
+        time = Math.floor(time);
+        randomOpacity = Math.random();
 
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
 
-      ctx.fillText(names[index], INITIAL_X + INDENT * index, INITIAL_Y + RESULT_VIEW_NAME_COEFFICIENT);
-      ctx.fillText(time, INITIAL_X + INDENT * index, INITIAL_Y - (step * time) - RESULT_VIEW_TIME_COEFFICIENT);
+        ctx.fillText(names[index], INITIAL_X + INDENT * index, INITIAL_Y + RESULT_VIEW_NAME_COEFFICIENT);
+        ctx.fillText(time, INITIAL_X + INDENT * index, INITIAL_Y - (step * time) - RESULT_VIEW_TIME_COEFFICIENT);
 
-      ctx.fillStyle = 'rgba(0, 0, 255, ' + randomOpacity + ')';
+        ctx.fillStyle = 'rgba(0, 0, 255, ' + randomOpacity + ')';
 
-      if (names[index] === 'Вы') {
-        ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-      }
+        if (names[index] === 'Вы') {
+          ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+        }
 
-      drawHistogram(ctx, INITIAL_X, INDENT, INITIAL_Y, index, step, time);
-    })
+        drawHistogram(ctx, INITIAL_X, INDENT, INITIAL_Y, index, step, time);
+    });
 };
 
 window.renderStatistics = function (ctx, names, times) {
