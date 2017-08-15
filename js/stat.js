@@ -49,32 +49,33 @@ var findMax = function (times) {
 var drawStatistic = function (ctx, names, times) {
   var max = findMax(times);
   var randomOpacity;
-  var step = HISTOGRAM_HEIGHT / (max - 0);
+  var step = HISTOGRAM_HEIGHT / max;
 
 
-  for (var i = 0; i < times.length; i++) {
-    times[i] = Math.floor(times[i]);
-    randomOpacity = Math.random();
+  times
+    .forEach( function (time, index) {
+      time = Math.floor(time);
+      randomOpacity = Math.random();
 
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
 
-    ctx.fillText(names[i], INITIAL_X + INDENT * i, INITIAL_Y + RESULT_VIEW_NAME_COEFFICIENT);
-    ctx.fillText(times[i], INITIAL_X + INDENT * i, INITIAL_Y - (step * times[i]) - RESULT_VIEW_TIME_COEFFICIENT);
+      ctx.fillText(names[index], INITIAL_X + INDENT * index, INITIAL_Y + RESULT_VIEW_NAME_COEFFICIENT);
+      ctx.fillText(time, INITIAL_X + INDENT * index, INITIAL_Y - (step * time) - RESULT_VIEW_TIME_COEFFICIENT);
 
-    ctx.fillStyle = 'rgba(0, 0, 255, ' + randomOpacity + ')';
+      ctx.fillStyle = 'rgba(0, 0, 255, ' + randomOpacity + ')';
 
-    if (names[i] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    }
+      if (names[index] === 'Вы') {
+        ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+      }
 
-    ctx.beginPath();
-    ctx.moveTo(INITIAL_X + INDENT * i, INITIAL_Y);
-    ctx.lineTo((INITIAL_X + HISTOGRAM_WIDTH) + INDENT * i, INITIAL_Y);
-    ctx.lineTo((INITIAL_X + HISTOGRAM_WIDTH) + INDENT * i, INITIAL_Y - step * times[i]);
-    ctx.lineTo(INITIAL_X + INDENT * i, INITIAL_Y - step * times[i]);
-    ctx.closePath();
-    ctx.fill();
-  }
+      ctx.beginPath();
+      ctx.moveTo(INITIAL_X + INDENT * index, INITIAL_Y);
+      ctx.lineTo((INITIAL_X + HISTOGRAM_WIDTH) + INDENT * index, INITIAL_Y);
+      ctx.lineTo((INITIAL_X + HISTOGRAM_WIDTH) + INDENT * index, INITIAL_Y - step * time);
+      ctx.lineTo(INITIAL_X + INDENT * index, INITIAL_Y - step * time);
+      ctx.closePath();
+      ctx.fill();
+    })
 };
 
 window.renderStatistics = function (ctx, names, times) {
