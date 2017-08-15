@@ -20,7 +20,7 @@ var resultField = {
 var resultFieldShadow = {};
 
 for (var value in resultField) {
-  resultFieldShadow[value] = resultField[value];
+    resultFieldShadow[value] = resultField[value];
 }
 
 resultFieldShadow.positionX += 10;
