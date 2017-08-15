@@ -20,7 +20,9 @@ var resultField = {
 var resultFieldShadow = {};
 
 for (var value in resultField) {
+  if (resultField.hasOwnProperty(value)) {
     resultFieldShadow[value] = resultField[value];
+  }
 }
 
 resultFieldShadow.positionX += 10;
