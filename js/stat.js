@@ -26,7 +26,7 @@ var rectangleShadow = {
   COLOR: 'rgba(0, 0, 0, 0.7)'
 };
 
-var getShadowRect = function (ctx, object) {
+var drawRectangle = function (ctx, object) {
   ctx.fillStyle = object.COLOR;
 
   ctx.beginPath();
@@ -38,15 +38,7 @@ var getShadowRect = function (ctx, object) {
   ctx.fill();
 };
 
-var drawRectangleShadow = function (ctx) {
-  getShadowRect(ctx, rectangleShadow);
-};
-
-var drawRectangle = function (ctx) {
-  getShadowRect(ctx, rectangle);
-};
-
-var typeMessageField = function (ctx) {
+var typeMessage = function (ctx) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.font = '16px PT Mono';
 
@@ -55,10 +47,23 @@ var typeMessageField = function (ctx) {
 };
 
 var findMax = function (times) {
-  return Math.max.apply(Math, times);
+  return Math.max.apply(null, times);
 };
 
-var drawHistogramItem = function (ctx, index, step, time) {
+var drawHistogramItemDescription = function(ctx, names, index, time, step) {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+
+  ctx.fillText(names[index], INITIAL_X + INDENT * index, INITIAL_Y + RESULT_VIEW_NAME_CORRECTION);
+  ctx.fillText(time, INITIAL_X + INDENT * index, INITIAL_Y - (step * time) - RESULT_VIEW_TIME_CORRECTION);
+};
+
+var drawHistogramItem = function (ctx, index, step, time, randomOpacity, names) {
+  ctx.fillStyle = 'rgba(0, 0, 255, ' + randomOpacity + ')';
+
+  if (names[index] === 'Вы') {
+    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+  }
+
   ctx.beginPath();
   ctx.moveTo(INITIAL_X + INDENT * index, INITIAL_Y);
   ctx.lineTo(INITIAL_X + HISTOGRAM_WIDTH + INDENT * index, INITIAL_Y);
@@ -66,14 +71,6 @@ var drawHistogramItem = function (ctx, index, step, time) {
   ctx.lineTo(INITIAL_X + INDENT * index, INITIAL_Y - step * time);
   ctx.closePath();
   ctx.fill();
-};
-
-var drawHistogramItemName = function (ctx, names, index) {
-  ctx.fillText(names[index], INITIAL_X + INDENT * index, INITIAL_Y + RESULT_VIEW_NAME_CORRECTION);
-};
-
-var drawHistogramItemTime = function (ctx, time, index, step) {
-  ctx.fillText(time, INITIAL_X + INDENT * index, INITIAL_Y - (step * time) - RESULT_VIEW_TIME_CORRECTION);
 };
 
 var drawStatistic = function (ctx, names, times) {
@@ -87,23 +84,14 @@ var drawStatistic = function (ctx, names, times) {
         time = Math.floor(time);
         randomOpacity = Math.random();
 
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-        drawHistogramItemName(ctx, names, index);
-        drawHistogramItemTime(ctx, time, index, step);
-
-        ctx.fillStyle = 'rgba(0, 0, 255, ' + randomOpacity + ')';
-
-        if (names[index] === 'Вы') {
-          ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-        }
-
-        drawHistogramItem(ctx, index, step, time);
+        drawHistogramItemDescription(ctx, names, index, time, step);
+        drawHistogramItem(ctx, index, step, time, randomOpacity, names);
       });
 };
 
 window.renderStatistics = function (ctx, names, times) {
-  drawRectangleShadow(ctx);
-  drawRectangle(ctx);
-  typeMessageField(ctx);
+  drawRectangle(ctx, rectangleShadow);
+  drawRectangle(ctx, rectangle);
+  typeMessage(ctx);
   drawStatistic(ctx, names, times);
 };
