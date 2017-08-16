@@ -14,17 +14,21 @@ var rectangle = {
   POSITION_X: 100,
   POSITION_Y: 10,
   WIDTH: 420,
-  HEIGHT: 270
+  HEIGHT: 270,
+  COLOR: '#fff'
 };
 
 var rectangleShadow = {
   POSITION_X: 110,
   POSITION_Y: 20,
   WIDTH: 420,
-  HEIGHT: 270
+  HEIGHT: 270,
+  COLOR: 'rgba(0, 0, 0, 0.7)'
 };
 
 var getShadowRect = function (ctx, object) {
+  ctx.fillStyle = object.COLOR;
+
   ctx.beginPath();
   ctx.moveTo(object.POSITION_X, object.POSITION_Y);
   ctx.lineTo(object.POSITION_X + object.WIDTH, object.POSITION_Y);
@@ -35,14 +39,10 @@ var getShadowRect = function (ctx, object) {
 };
 
 var drawRectangleShadow = function (ctx) {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-
   getShadowRect(ctx, rectangleShadow);
 };
 
 var drawRectangle = function (ctx) {
-  ctx.fillStyle = '#fff';
-
   getShadowRect(ctx, rectangle);
 };
 
