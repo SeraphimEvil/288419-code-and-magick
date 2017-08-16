@@ -21,6 +21,7 @@ var Rectangle = {
 // var getShadowRect = function () {
 
 // };
+
 var RectangleShadow = {};
 
 for (var value in Rectangle) {
