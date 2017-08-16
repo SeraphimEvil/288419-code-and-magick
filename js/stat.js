@@ -1,54 +1,58 @@
 'use strict';
 
-var GZ_MESSAGE = 'Ура вы победили!';
+var GRATZ_MESSAGE = 'Ура вы победили!';
 var RESULT_LIST_MESSAGE = 'Список результатов:';
 var HISTOGRAM_WIDTH = 40;
 var HISTOGRAM_HEIGHT = 150;
 var INDENT = 50 + HISTOGRAM_WIDTH;
 var INITIAL_X = 150;
 var INITIAL_Y = 240;
-var RESULT_VIEW_NAME_COEFFICIENT = 20;
-var RESULT_VIEW_TIME_COEFFICIENT = 10;
+var RESULT_VIEW_NAME_CORRECTION = 20;
+var RESULT_VIEW_TIME_CORRECTION = 10;
 
-var resultField = {
+var Rectangle = {
   positionX: 100,
   positionY: 10,
   width: 420,
   height: 270
 };
 
-var resultFieldShadow = {};
 
-for (var value in resultField) {
-  if (resultField.hasOwnProperty(value)) {
-    resultFieldShadow[value] = resultField[value];
+// var getShadowRect = function () {
+
+// };
+var RectangleShadow = {};
+
+for (var value in Rectangle) {
+  if (Rectangle.hasOwnProperty(value)) {
+    RectangleShadow[value] = Rectangle[value];
   }
 }
 
-resultFieldShadow.positionX += 10;
-resultFieldShadow.positionY += 10;
+RectangleShadow.positionX += 10;
+RectangleShadow.positionY += 10;
 
 
-var drawResultFieldShadow = function (ctx) {
+var drawRectangleShadow = function (ctx) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
 
   ctx.beginPath();
-  ctx.moveTo(resultFieldShadow.positionX, resultFieldShadow.positionY);
-  ctx.lineTo(resultFieldShadow.positionX + resultFieldShadow.width, resultFieldShadow.positionY);
-  ctx.lineTo(resultFieldShadow.positionX + resultFieldShadow.width, resultFieldShadow.positionY + resultFieldShadow.height);
-  ctx.lineTo(resultFieldShadow.positionX, resultFieldShadow.positionY + resultFieldShadow.height);
+  ctx.moveTo(RectangleShadow.positionX, RectangleShadow.positionY);
+  ctx.lineTo(RectangleShadow.positionX + RectangleShadow.width, RectangleShadow.positionY);
+  ctx.lineTo(RectangleShadow.positionX + RectangleShadow.width, RectangleShadow.positionY + RectangleShadow.height);
+  ctx.lineTo(RectangleShadow.positionX, RectangleShadow.positionY + RectangleShadow.height);
   ctx.closePath();
   ctx.fill();
 };
 
-var drawResultField = function (ctx) {
+var drawRectangle = function (ctx) {
   ctx.fillStyle = '#fff';
 
   ctx.beginPath();
-  ctx.moveTo(resultField.positionX, resultField.positionY);
-  ctx.lineTo(resultField.positionX + resultField.width, resultField.positionY);
-  ctx.lineTo(resultField.positionX + resultField.width, resultField.positionY + resultField.height);
-  ctx.lineTo(resultField.positionX, resultField.positionY + resultField.height);
+  ctx.moveTo(Rectangle.positionX, Rectangle.positionY);
+  ctx.lineTo(Rectangle.positionX + Rectangle.width, Rectangle.positionY);
+  ctx.lineTo(Rectangle.positionX + Rectangle.width, Rectangle.positionY + Rectangle.height);
+  ctx.lineTo(Rectangle.positionX, Rectangle.positionY + Rectangle.height);
   ctx.closePath();
   ctx.fill();
 };
@@ -57,7 +61,7 @@ var typeMessageField = function (ctx) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.font = '16px PT Mono';
 
-  ctx.fillText(GZ_MESSAGE, 120, 40);
+  ctx.fillText(GRATZ_MESSAGE, 120, 40);
   ctx.fillText(RESULT_LIST_MESSAGE, 120, 60);
 };
 
@@ -65,7 +69,7 @@ var findMax = function (times) {
   return Math.max.apply(Math, times);
 };
 
-var drawHistogram = function (ctx, index, step, time) {
+var drawHistogramItem = function (ctx, index, step, time) {
   ctx.beginPath();
   ctx.moveTo(INITIAL_X + INDENT * index, INITIAL_Y);
   ctx.lineTo(INITIAL_X + HISTOGRAM_WIDTH + INDENT * index, INITIAL_Y);
@@ -73,6 +77,14 @@ var drawHistogram = function (ctx, index, step, time) {
   ctx.lineTo(INITIAL_X + INDENT * index, INITIAL_Y - step * time);
   ctx.closePath();
   ctx.fill();
+};
+
+var drawHistogramItemName = function (ctx, names, index) {
+  ctx.fillText(names[index], INITIAL_X + INDENT * index, INITIAL_Y + RESULT_VIEW_NAME_CORRECTION);
+};
+
+var drawHistogramItemTime = function (ctx, time, index, step) {
+  ctx.fillText(time, INITIAL_X + INDENT * index, INITIAL_Y - (step * time) - RESULT_VIEW_TIME_CORRECTION);
 };
 
 var drawStatistic = function (ctx, names, times) {
@@ -87,9 +99,8 @@ var drawStatistic = function (ctx, names, times) {
         randomOpacity = Math.random();
 
         ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-
-        ctx.fillText(names[index], INITIAL_X + INDENT * index, INITIAL_Y + RESULT_VIEW_NAME_COEFFICIENT);
-        ctx.fillText(time, INITIAL_X + INDENT * index, INITIAL_Y - (step * time) - RESULT_VIEW_TIME_COEFFICIENT);
+        drawHistogramItemName(ctx, names, index);
+        drawHistogramItemTime(ctx, time, index, step);
 
         ctx.fillStyle = 'rgba(0, 0, 255, ' + randomOpacity + ')';
 
@@ -97,13 +108,13 @@ var drawStatistic = function (ctx, names, times) {
           ctx.fillStyle = 'rgba(255, 0, 0, 1)';
         }
 
-        drawHistogram(ctx, index, step, time);
+        drawHistogramItem(ctx, index, step, time);
       });
 };
 
 window.renderStatistics = function (ctx, names, times) {
-  drawResultFieldShadow(ctx);
-  drawResultField(ctx);
+  drawRectangleShadow(ctx);
+  drawRectangle(ctx);
   typeMessageField(ctx);
   drawStatistic(ctx, names, times);
 };
