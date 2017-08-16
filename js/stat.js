@@ -50,7 +50,7 @@ var findMax = function (times) {
   return Math.max.apply(null, times);
 };
 
-var drawHistogramItemDescription = function(ctx, names, index, time, step) {
+var drawHistogramItemDescription = function (ctx, names, index, time, step) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
 
   ctx.fillText(names[index], INITIAL_X + INDENT * index, INITIAL_Y + RESULT_VIEW_NAME_CORRECTION);
