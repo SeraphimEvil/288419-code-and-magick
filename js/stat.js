@@ -10,52 +10,40 @@ var INITIAL_Y = 240;
 var RESULT_VIEW_NAME_CORRECTION = 20;
 var RESULT_VIEW_TIME_CORRECTION = 10;
 
-var Rectangle = {
-  positionX: 100,
-  positionY: 10,
-  width: 420,
-  height: 270
+var rectangle = {
+  POSITION_X: 100,
+  POSITION_Y: 10,
+  WIDTH: 420,
+  HEIGHT: 270
 };
 
+var rectangleShadow = {
+  POSITION_X: 110,
+  POSITION_Y: 20,
+  WIDTH: 420,
+  HEIGHT: 270
+};
 
-// var getShadowRect = function () {
-
-// };
-
-var RectangleShadow = {};
-
-for (var value in Rectangle) {
-  if (Rectangle.hasOwnProperty(value)) {
-    RectangleShadow[value] = Rectangle[value];
-  }
-}
-
-RectangleShadow.positionX += 10;
-RectangleShadow.positionY += 10;
-
+var getShadowRect = function (ctx, object) {
+  ctx.beginPath();
+  ctx.moveTo(object.POSITION_X, object.POSITION_Y);
+  ctx.lineTo(object.POSITION_X + object.WIDTH, object.POSITION_Y);
+  ctx.lineTo(object.POSITION_X + object.WIDTH, object.POSITION_Y + object.HEIGHT);
+  ctx.lineTo(object.POSITION_X, object.POSITION_Y + object.HEIGHT);
+  ctx.closePath();
+  ctx.fill();
+};
 
 var drawRectangleShadow = function (ctx) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
 
-  ctx.beginPath();
-  ctx.moveTo(RectangleShadow.positionX, RectangleShadow.positionY);
-  ctx.lineTo(RectangleShadow.positionX + RectangleShadow.width, RectangleShadow.positionY);
-  ctx.lineTo(RectangleShadow.positionX + RectangleShadow.width, RectangleShadow.positionY + RectangleShadow.height);
-  ctx.lineTo(RectangleShadow.positionX, RectangleShadow.positionY + RectangleShadow.height);
-  ctx.closePath();
-  ctx.fill();
+  getShadowRect(ctx, rectangleShadow);
 };
 
 var drawRectangle = function (ctx) {
   ctx.fillStyle = '#fff';
 
-  ctx.beginPath();
-  ctx.moveTo(Rectangle.positionX, Rectangle.positionY);
-  ctx.lineTo(Rectangle.positionX + Rectangle.width, Rectangle.positionY);
-  ctx.lineTo(Rectangle.positionX + Rectangle.width, Rectangle.positionY + Rectangle.height);
-  ctx.lineTo(Rectangle.positionX, Rectangle.positionY + Rectangle.height);
-  ctx.closePath();
-  ctx.fill();
+  getShadowRect(ctx, rectangle);
 };
 
 var typeMessageField = function (ctx) {
