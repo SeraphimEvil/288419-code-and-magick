@@ -1,6 +1,6 @@
 'use strict';
 
-var GRATZ_MESSAGE = 'Ура вы победили!';
+var GLORY_MESSAGE = 'Ура вы победили!';
 var RESULT_LIST_MESSAGE = 'Список результатов:';
 var HISTOGRAM_WIDTH = 40;
 var HISTOGRAM_HEIGHT = 150;
@@ -50,7 +50,7 @@ var typeMessageField = function (ctx) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.font = '16px PT Mono';
 
-  ctx.fillText(GRATZ_MESSAGE, 120, 40);
+  ctx.fillText(GLORY_MESSAGE, 120, 40);
   ctx.fillText(RESULT_LIST_MESSAGE, 120, 60);
 };
 
