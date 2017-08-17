@@ -10,13 +10,21 @@ var INITIAL_Y = 240;
 var RESULT_VIEW_NAME_CORRECTION = 20;
 var RESULT_VIEW_TIME_CORRECTION = 10;
 
-var rectangleShadow = {
-  POSITION_X: 110,
-  POSITION_Y: 20,
+var rectangle = {
+  POSITION_X: 100,
+  POSITION_Y: 10,
   WIDTH: 420,
   HEIGHT: 270,
-  COLOR: 'rgba(0, 0, 0, 0.7)'
+  COLOR: '#fff'
 };
+
+var getShadowRect = function (object) {
+  var rectangleShadow = Object.assign({}, object);
+  rectangleShadow.POSITION_X += 10;
+  rectangleShadow.POSITION_Y += 10;
+  rectangleShadow.COLOR = 'rgba(0, 0, 0, 0.7)';
+  return rectangleShadow;
+}
 
 var drawRectangle = function (ctx, object) {
   ctx.fillStyle = object.COLOR;
@@ -28,24 +36,6 @@ var drawRectangle = function (ctx, object) {
   ctx.lineTo(object.POSITION_X, object.POSITION_Y + object.HEIGHT);
   ctx.closePath();
   ctx.fill();
-
-
-};
-
-var getRectangleMain = function (object) {
-  object.COLOR = '#fff';
-  object.POSITION_X -= 10;
-  object.POSITION_Y -= 10;
-
-  return object;
-};
-
-var rectangleFix = function (object) {
-  object.COLOR = 'rgba(0, 0, 0, 0.7)';
-  object.POSITION_X += 10;
-  object.POSITION_Y += 10;
-
-  return object;
 };
 
 var typeMessage = function (ctx) {
@@ -96,10 +86,8 @@ var drawStatistic = function (ctx, names, times) {
 };
 
 window.renderStatistics = function (ctx, names, times) {
-  drawRectangle(ctx, rectangleShadow);
-  drawRectangle(ctx, getRectangleMain(rectangleShadow));
+  drawRectangle(ctx, getShadowRect(rectangle));
+  drawRectangle(ctx, rectangle);
   typeMessage(ctx);
   drawStatistic(ctx, names, times);
-
-  rectangleFix(rectangleShadow);
 };
