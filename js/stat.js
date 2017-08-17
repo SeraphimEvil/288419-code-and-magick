@@ -58,11 +58,7 @@ var drawHistogramItemDescription = function (ctx, names, index, time, step) {
 };
 
 var drawHistogramItem = function (ctx, index, step, time, randomOpacity, names) {
-  ctx.fillStyle = 'rgba(0, 0, 255, ' + randomOpacity + ')';
-
-  if (names[index] === 'Вы') {
-    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-  }
+  ctx.fillStyle = (names[index] === 'Вы') ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + randomOpacity + ')';
 
   ctx.beginPath();
   ctx.moveTo(INITIAL_X + INDENT * index, INITIAL_Y);
