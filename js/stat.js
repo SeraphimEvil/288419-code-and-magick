@@ -24,7 +24,7 @@ var getShadowRect = function (object) {
   rectangleShadow.POSITION_Y += 10;
   rectangleShadow.COLOR = 'rgba(0, 0, 0, 0.7)';
   return rectangleShadow;
-}
+};
 
 var drawRectangle = function (ctx, object) {
   ctx.fillStyle = object.COLOR;
