@@ -1,6 +1,6 @@
 'use strict';
 
-(function(){
+(function () {
   var GLORY_MESSAGE = 'Ура вы победили!';
   var RESULT_LIST_MESSAGE = 'Список результатов:';
   var HISTOGRAM_WIDTH = 40;
@@ -52,7 +52,7 @@
     ctx.fillText(time, INITIAL_X + INDENT * index, INITIAL_Y - (step * time) - RESULT_VIEW_TIME_CORRECTION);
   };
 
-  var drawHistogramItem = function (ctx, index, step, time, randomOpacity, colorHistogram) {
+  var drawHistogramItem = function (ctx, index, step, time, colorHistogram) {
     ctx.fillStyle = colorHistogram;
 
     ctx.beginPath();
@@ -67,15 +67,16 @@
   var drawStatistic = function (ctx, names, times) {
     var max = findMax(times);
     var randomOpacity;
+    var colorHistogram
     var step = HISTOGRAM_HEIGHT / max;
 
     times
         .forEach(function (time, index) {
           time = Math.floor(time);
           randomOpacity = Math.random();
-          var colorHistogram = (names[index] === 'Вы') ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + randomOpacity + ')';
+          colorHistogram = (names[index] === 'Вы') ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + randomOpacity + ')';
           drawHistogramItemDescription(ctx, names, index, time, step);
-          drawHistogramItem(ctx, index, step, time, randomOpacity, colorHistogram);
+          drawHistogramItem(ctx, index, step, time, colorHistogram);
         });
   };
 
