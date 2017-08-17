@@ -10,17 +10,9 @@ var INITIAL_Y = 240;
 var RESULT_VIEW_NAME_CORRECTION = 20;
 var RESULT_VIEW_TIME_CORRECTION = 10;
 
-var rectangle = {
-  POSITION_X: 100,
-  POSITION_Y: 10,
-  WIDTH: 420,
-  HEIGHT: 270,
-  COLOR: '#fff'
-};
-
 var rectangleShadow = {
   POSITION_X: 110,
-  POSITION_Y: 20,
+  POSITION_Y: 10,
   WIDTH: 420,
   HEIGHT: 270,
   COLOR: 'rgba(0, 0, 0, 0.7)'
@@ -36,6 +28,14 @@ var drawRectangle = function (ctx, object) {
   ctx.lineTo(object.POSITION_X, object.POSITION_Y + object.HEIGHT);
   ctx.closePath();
   ctx.fill();
+};
+
+var getRectangleMain = function (object) {
+  object.COLOR = "#fff";
+  object.POSITION_X -= 10;
+  object.POSITION_Y -= 10;
+
+  return object;
 };
 
 var typeMessage = function (ctx) {
@@ -87,7 +87,7 @@ var drawStatistic = function (ctx, names, times) {
 
 window.renderStatistics = function (ctx, names, times) {
   drawRectangle(ctx, rectangleShadow);
-  drawRectangle(ctx, rectangle);
+  drawRectangle(ctx, getRectangleMain(rectangleShadow));
   typeMessage(ctx);
   drawStatistic(ctx, names, times);
 };
