@@ -31,7 +31,7 @@ var drawRectangle = function (ctx, object) {
 };
 
 var getRectangleMain = function (object) {
-  object.COLOR = "#fff";
+  object.COLOR = '#fff';
   object.POSITION_X -= 10;
   object.POSITION_Y -= 10;
 
