@@ -67,7 +67,7 @@
   var drawStatistic = function (ctx, names, times) {
     var max = findMax(times);
     var randomOpacity;
-    var colorHistogram
+    var colorHistogram;
     var step = HISTOGRAM_HEIGHT / max;
 
     times
