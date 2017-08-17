@@ -12,7 +12,7 @@ var RESULT_VIEW_TIME_CORRECTION = 10;
 
 var rectangleShadow = {
   POSITION_X: 110,
-  POSITION_Y: 10,
+  POSITION_Y: 20,
   WIDTH: 420,
   HEIGHT: 270,
   COLOR: 'rgba(0, 0, 0, 0.7)'
@@ -28,12 +28,22 @@ var drawRectangle = function (ctx, object) {
   ctx.lineTo(object.POSITION_X, object.POSITION_Y + object.HEIGHT);
   ctx.closePath();
   ctx.fill();
+
+
 };
 
 var getRectangleMain = function (object) {
   object.COLOR = '#fff';
   object.POSITION_X -= 10;
   object.POSITION_Y -= 10;
+
+  return object;
+};
+
+var rectangleFix = function (object) {
+  object.COLOR = 'rgba(0, 0, 0, 0.7)';
+  object.POSITION_X += 10;
+  object.POSITION_Y += 10;
 
   return object;
 };
@@ -90,4 +100,6 @@ window.renderStatistics = function (ctx, names, times) {
   drawRectangle(ctx, getRectangleMain(rectangleShadow));
   typeMessage(ctx);
   drawStatistic(ctx, names, times);
+
+  rectangleFix(rectangleShadow);
 };
