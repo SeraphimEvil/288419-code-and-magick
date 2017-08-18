@@ -20,7 +20,7 @@
   };
 
   var getShadowRect = function (object) {
-    var rectangleShadow = Object.assign({}, object, {POSITION_X: 110, POSITION_Y: 20, COLOR: 'rgba(0, 0, 0, 0.7)'});
+    var rectangleShadow = Object.assign({}, object, {POSITION_X: object.POSITION_X + 10, POSITION_Y: object.POSITION_Y + 10, COLOR: 'rgba(0, 0, 0, 0.7)'});
     return rectangleShadow;
   };
 
