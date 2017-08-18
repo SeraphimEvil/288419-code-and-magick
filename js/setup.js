@@ -66,13 +66,13 @@
     wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
 
     return wizardElement;
-  }
+  };
 
   var fragment = document.createDocumentFragment();
   wizards
       .forEach(function (wizard) {
         fragment.appendChild(renderWizard(wizard));
-      })
+      });
   similarListElement.appendChild(fragment);
 
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
