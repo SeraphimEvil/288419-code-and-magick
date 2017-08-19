@@ -26,24 +26,24 @@
 
   var wizards = [
     {
-      name: `${getArrayElement(WIZARD_NAMES)} ${getArrayElement(WIZARD_LAST_NAMES)}`,
-      coatColor: `${getArrayElement(COAT_COLORS)}`,
-      eyesColor: `${getArrayElement(EYES_COLORS)}`
+      name: '' + getArrayElement(WIZARD_NAMES) + ' ' + getArrayElement(WIZARD_LAST_NAMES) + '',
+      coatColor: getArrayElement(COAT_COLORS),
+      eyesColor: getArrayElement(EYES_COLORS)
     },
     {
-      name: `${getArrayElement(WIZARD_NAMES)} ${getArrayElement(WIZARD_LAST_NAMES)}`,
-      coatColor: `${getArrayElement(COAT_COLORS)}`,
-      eyesColor: `${getArrayElement(EYES_COLORS)}`
+      name: '' + getArrayElement(WIZARD_NAMES) + ' ' + getArrayElement(WIZARD_LAST_NAMES) + '',
+      coatColor: getArrayElement(COAT_COLORS),
+      eyesColor: getArrayElement(EYES_COLORS)
     },
     {
-      name: `${getArrayElement(WIZARD_NAMES)} ${getArrayElement(WIZARD_LAST_NAMES)}`,
-      coatColor: `${getArrayElement(COAT_COLORS)}`,
-      eyesColor: `${getArrayElement(EYES_COLORS)}`
+      name: '' + getArrayElement(WIZARD_NAMES) + ' ' + getArrayElement(WIZARD_LAST_NAMES) + '',
+      coatColor: getArrayElement(COAT_COLORS),
+      eyesColor: getArrayElement(EYES_COLORS)
     },
     {
-      name: `${getArrayElement(WIZARD_NAMES)} ${getArrayElement(WIZARD_LAST_NAMES)}`,
-      coatColor: `${getArrayElement(COAT_COLORS)}`,
-      eyesColor: `${getArrayElement(EYES_COLORS)}`
+      name: '' + getArrayElement(WIZARD_NAMES) + ' ' + getArrayElement(WIZARD_LAST_NAMES) + '',
+      coatColor: getArrayElement(COAT_COLORS),
+      eyesColor: getArrayElement(EYES_COLORS)
     }
   ];
 
@@ -65,4 +65,5 @@
   similarListElement.appendChild(fragment);
 
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
 })();
