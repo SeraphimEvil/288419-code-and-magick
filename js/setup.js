@@ -13,50 +13,39 @@
 
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 
-  var getWizarnName = function (names) {
-    var wizardName = names[Math.floor(Math.random() * names.length)];
-    return wizardName;
+  var getArrayPos = function (array) {
+    var arrayPos = Math.floor(Math.random() * array.length);
+    return arrayPos;
   };
 
-  var getWizardLastName = function (lastNames) {
-    var wizardLasnName = lastNames[Math.floor(Math.random() * lastNames.length)];
-    return wizardLasnName;
+  var getArrayElement = function (array) {
+    var arrayListPos = getArrayPos(array);
+    var arrayElement = array[arrayListPos];
+    return arrayElement;
   };
-
-  var getWizardCoatColor = function (coatColors) {
-    var coatColor = coatColors[Math.floor(Math.random() * coatColors.length)];
-    return coatColor;
-  };
-
-  var getWizardEyesColor = function (eyesColors) {
-    var eyesColor = eyesColors[Math.floor(Math.random() * eyesColors.length)];
-    return eyesColor;
-  };
-
 
   var wizards = [
     {
-      name: '' + getWizarnName(WIZARD_NAMES) + ' ' + getWizardLastName(WIZARD_LAST_NAMES) + '',
-      coatColor: getWizardCoatColor(COAT_COLORS),
-      eyesColor: getWizardEyesColor(EYES_COLORS)
+      name: `${getArrayElement(WIZARD_NAMES)} ${getArrayElement(WIZARD_LAST_NAMES)}`,
+      coatColor: `${getArrayElement(COAT_COLORS)}`,
+      eyesColor: `${getArrayElement(EYES_COLORS)}`
     },
     {
-      name: '' + getWizarnName(WIZARD_NAMES) + ' ' + getWizardLastName(WIZARD_LAST_NAMES) + '',
-      coatColor: getWizardCoatColor(COAT_COLORS),
-      eyesColor: getWizardEyesColor(EYES_COLORS)
+      name: `${getArrayElement(WIZARD_NAMES)} ${getArrayElement(WIZARD_LAST_NAMES)}`,
+      coatColor: `${getArrayElement(COAT_COLORS)}`,
+      eyesColor: `${getArrayElement(EYES_COLORS)}`
     },
     {
-      name: '' + getWizarnName(WIZARD_NAMES) + ' ' + getWizardLastName(WIZARD_LAST_NAMES) + '',
-      coatColor: getWizardCoatColor(COAT_COLORS),
-      eyesColor: getWizardEyesColor(EYES_COLORS)
+      name: `${getArrayElement(WIZARD_NAMES)} ${getArrayElement(WIZARD_LAST_NAMES)}`,
+      coatColor: `${getArrayElement(COAT_COLORS)}`,
+      eyesColor: `${getArrayElement(EYES_COLORS)}`
     },
     {
-      name: '' + getWizarnName(WIZARD_NAMES) + ' ' + getWizardLastName(WIZARD_LAST_NAMES) + '',
-      coatColor: getWizardCoatColor(COAT_COLORS),
-      eyesColor: getWizardEyesColor(EYES_COLORS)
+      name: `${getArrayElement(WIZARD_NAMES)} ${getArrayElement(WIZARD_LAST_NAMES)}`,
+      coatColor: `${getArrayElement(COAT_COLORS)}`,
+      eyesColor: `${getArrayElement(EYES_COLORS)}`
     }
   ];
-
 
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -76,5 +65,4 @@
   similarListElement.appendChild(fragment);
 
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
-
 })();
