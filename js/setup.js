@@ -32,7 +32,7 @@
 
   var getFragment = function () {
     return document.createDocumentFragment();
-  }
+  };
 
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
