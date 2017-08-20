@@ -7,45 +7,32 @@
   var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
   var userDialog = document.querySelector('.setup');
-  userDialog.classList.remove('hidden');
-
   var similarListElement = userDialog.querySelector('.setup-similar-list');
-
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 
-  var getArrayPos = function (array) {
-    var arrayPos = Math.floor(Math.random() * array.length);
-    return arrayPos;
+  var getRandomArrayPos = function (arrayLength) {
+    return Math.floor(Math.random() * arrayLength);
   };
 
   var getArrayElement = function (array) {
-    var arrayListPos = getArrayPos(array);
+    var arrayLength = array.length;
+    var arrayListPos = getRandomArrayPos(arrayLength);
     var arrayElement = array[arrayListPos];
     return arrayElement;
   };
 
-  var wizards = [
-    {
+  var getWizardParams = function () {
+    var wizard = {
       name: '' + getArrayElement(WIZARD_NAMES) + ' ' + getArrayElement(WIZARD_LAST_NAMES) + '',
       coatColor: getArrayElement(COAT_COLORS),
       eyesColor: getArrayElement(EYES_COLORS)
-    },
-    {
-      name: '' + getArrayElement(WIZARD_NAMES) + ' ' + getArrayElement(WIZARD_LAST_NAMES) + '',
-      coatColor: getArrayElement(COAT_COLORS),
-      eyesColor: getArrayElement(EYES_COLORS)
-    },
-    {
-      name: '' + getArrayElement(WIZARD_NAMES) + ' ' + getArrayElement(WIZARD_LAST_NAMES) + '',
-      coatColor: getArrayElement(COAT_COLORS),
-      eyesColor: getArrayElement(EYES_COLORS)
-    },
-    {
-      name: '' + getArrayElement(WIZARD_NAMES) + ' ' + getArrayElement(WIZARD_LAST_NAMES) + '',
-      coatColor: getArrayElement(COAT_COLORS),
-      eyesColor: getArrayElement(EYES_COLORS)
-    }
-  ];
+    };
+    return wizard;
+  };
+
+  var getFragment = function () {
+    return document.createDocumentFragment();
+  }
 
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -57,12 +44,14 @@
     return wizardElement;
   };
 
-  var fragment = document.createDocumentFragment();
-  wizards
-      .forEach(function (wizard) {
-        fragment.appendChild(renderWizard(wizard));
-      });
-  similarListElement.appendChild(fragment);
+  for (var i = 0; i < 4; i++) {
+    var fragment = getFragment();
+    getWizardParams();
+    fragment.appendChild(renderWizard(getWizardParams()));
 
+    similarListElement.appendChild(fragment);
+  }
+
+  userDialog.classList.remove('hidden');
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
 })();
