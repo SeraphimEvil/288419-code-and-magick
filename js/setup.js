@@ -46,9 +46,7 @@
 
   for (var i = 0; i < 4; i++) {
     var fragment = getFragment();
-    getWizardParams();
     fragment.appendChild(renderWizard(getWizardParams()));
-
     similarListElement.appendChild(fragment);
   }
 
