@@ -6,7 +6,7 @@
   var coatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
   var eyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
 
-  var similarWizardsCount = 4;
+  var SIMILAR_WIZARDS_COUNT = 4;
   var userDialog = document.querySelector('.setup');
   var similarListElement = userDialog.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
@@ -25,7 +25,7 @@
 
   var getWizardParams = function () {
     return {
-      name: '' + getArrayElement(wizardNames) + ' ' + getArrayElement(wizardLastNames) + '',
+      name: getArrayElement(wizardNames) + ' ' + getArrayElement(wizardLastNames),
       coatColor: getArrayElement(coatColors),
       eyesColor: getArrayElement(eyesColors)
     };
@@ -41,7 +41,7 @@
     return wizardElement;
   };
 
-  for (var i = 0; i < similarWizardsCount; i++) {
+  for (var i = 0; i < SIMILAR_WIZARDS_COUNT; i++) {
     fragment.appendChild(renderWizard(getWizardParams()));
     similarListElement.appendChild(fragment);
   }
