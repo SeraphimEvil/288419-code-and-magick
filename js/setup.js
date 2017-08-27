@@ -50,7 +50,7 @@
     return wizardElement;
   };
 
-  var onSetupEscPress = function(event) {
+  var onSetupEscPress = function (event) {
     if (event.keyCode === ESC_KEYCODE) {
       closeSetup();
     }
@@ -96,7 +96,7 @@
     }
   });
 
-  userNameInput.addEventListener('invalid', function (event) {
+  userNameInput.addEventListener('invalid', function () {
     if (!userNameInput.validity.valid) {
       if (userNameInput.validity.tooShort) {
         userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
