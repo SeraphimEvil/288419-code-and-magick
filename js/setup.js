@@ -18,7 +18,6 @@
   var setupClose = setup.querySelector('.setup-close');
   var setupSaveButton = setup.querySelector('.setup-submit');
   var similarListElement = setup.querySelector('.setup-similar-list');
-  var userNameInput = setup.querySelector('.setup-user-name');
   var userWizardSetup = setup.querySelector('.setup-player');
 
   var getRandomArrayPos = function (arrayLength) {
