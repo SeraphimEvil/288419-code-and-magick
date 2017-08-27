@@ -14,10 +14,11 @@
   var fragment = document.createDocumentFragment();
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
   var setup = document.querySelector('.setup');
-  var setupOpen = document.querySelector('.setup-open');
-  var setupClose = setup.querySelector('.setup-close');
+  var setupOpenButton = document.querySelector('.setup-open');
+  var setupCloseButton = setup.querySelector('.setup-close');
   var setupSaveButton = setup.querySelector('.setup-submit');
   var similarListElement = setup.querySelector('.setup-similar-list');
+  var userNameInput = setup.querySelector('.setup-user-name');
   var userWizardSetup = setup.querySelector('.setup-player');
 
   var getRandomArrayPos = function (arrayLength) {
@@ -65,21 +66,29 @@
     document.removeEventListener('keydown', onSetupEscPress);
   };
 
-  setupOpen.addEventListener('click', function () {
+  userNameInput.onfocus = function () {
+    document.removeEventListener('keydown', onSetupEscPress);
+  };
+
+  userNameInput.onblur = function () {
+    document.addEventListener('keydown', onSetupEscPress);
+  };
+
+  setupOpenButton.addEventListener('click', function () {
     openSetup();
   });
 
-  setupOpen.addEventListener('keydown', function (event) {
+  setupOpenButton.addEventListener('keydown', function (event) {
     if (event.keyCode === ENTER_KEYCODE) {
       openSetup();
     }
   });
 
-  setupClose.addEventListener('click', function () {
+  setupCloseButton.addEventListener('click', function () {
     closeSetup();
   });
 
-  setupClose.addEventListener('keydown', function (event) {
+  setupCloseButton.addEventListener('keydown', function (event) {
     if (event.keyCode === ENTER_KEYCODE) {
       closeSetup();
     }
@@ -120,8 +129,8 @@
 
   for (var i = 0; i < SIMILAR_WIZARDS_COUNT; i++) {
     fragment.appendChild(renderWizard(getWizardParams()));
-    similarListElement.appendChild(fragment);
   }
 
+  similarListElement.appendChild(fragment);
   setup.querySelector('.setup-similar').classList.remove('hidden');
 })();
