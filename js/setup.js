@@ -2,7 +2,7 @@
 
 (function () {
   var SIMILAR_WIZARDS_COUNT = 4;
-  var KEYCODE = {
+  var keyCode = {
     ESC: 27,
     ENTER: 13
   };
@@ -66,7 +66,7 @@
   };
 
   var onSetupEscPress = function (event) {
-    if (event.keyCode === KEYCODE.ESC) {
+    if (event.keyCode === keyCode.ESC) {
       if (document.activeElement !== userNameInput) {
         closeSetup();
       }
@@ -88,7 +88,7 @@
   });
 
   setupOpenButton.addEventListener('keydown', function (event) {
-    if (event.keyCode === KEYCODE.ENTER) {
+    if (event.keyCode === keyCode.ENTER) {
       openSetup();
     }
   });
@@ -98,7 +98,7 @@
   });
 
   setupCloseButton.addEventListener('keydown', function (event) {
-    if (event.keyCode === KEYCODE.ENTER) {
+    if (event.keyCode === keyCode.ENTER) {
       closeSetup();
     }
   });
@@ -108,7 +108,7 @@
   });
 
   setupSaveButton.addEventListener('keydown', function (event) {
-    if (event.keyCode === KEYCODE.ENTER) {
+    if (event.keyCode === keyCode.ENTER) {
       closeSetup();
     }
   });
