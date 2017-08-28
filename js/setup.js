@@ -68,48 +68,48 @@
   var onSetupEscPress = function (event) {
     if (event.keyCode === keyCode.ESC) {
       if (document.activeElement !== userNameInput) {
-        onSetupCloseClick();
+        onSetupClose();
       }
     }
   };
 
-  var onSetupOpenClick = function () {
+  var onSetupOpen = function () {
     setup.classList.remove('hidden');
     document.addEventListener('keydown', onSetupEscPress);
   };
 
-  var onSetupCloseClick = function () {
+  var onSetupClose = function () {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', onSetupEscPress);
   };
 
   setupOpenButton.addEventListener('click', function () {
-    onSetupOpenClick();
+    onSetupOpen();
   });
 
   setupOpenButton.addEventListener('keydown', function (event) {
     if (event.keyCode === keyCode.ENTER) {
-      onSetupOpenClick();
+      onSetupOpen();
     }
   });
 
   setupCloseButton.addEventListener('click', function () {
-    onSetupCloseClick();
+    onSetupClose();
   });
 
   setupCloseButton.addEventListener('keydown', function (event) {
     if (event.keyCode === keyCode.ENTER) {
-      onSetupCloseClick();
+      onSetupClose();
     }
   });
 
   setupSaveButton.addEventListener('click', function () {
-    onSetupCloseClick();
+    onSetupClose();
   });
 
   setupSaveButton.addEventListener('keydown', function (event) {
     if (event.keyCode === keyCode.ENTER) {
-      onSetupCloseClick();
+      onSetupClose();
     }
   });
 
