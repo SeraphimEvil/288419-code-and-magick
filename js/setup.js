@@ -113,19 +113,19 @@
     }
   });
 
-  wizardCoatElement.addEventListener('click', function (event) {
+  wizardCoatElement.addEventListener('click', function () {
     var coatColor = getArrayElement(coatColors);
     wizardCoatElement.style.fill = coatColor;
     wizardCoatInput.value = coatColor;
   });
 
-  wizardEyesElement.addEventListener('click', function (event) {
+  wizardEyesElement.addEventListener('click', function () {
     var eyesColor = getArrayElement(eyesColors);
     wizardEyesElement.style.fill = eyesColor;
     wizardEyesInput.value = eyesColor;
   });
 
-  wizardFireballElement.addEventListener('click', function (event) {
+  wizardFireballElement.addEventListener('click', function () {
     var fireballColor = getArrayElement(fireballColors);
     wizardFireballElement.style.backgroundColor = fireballColor;
     wizardFireballInput.value = fireballColor;
