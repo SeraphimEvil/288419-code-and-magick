@@ -2,6 +2,10 @@
 
 (function () {
   var SIMILAR_WIZARDS_COUNT = 4;
+  var SETUP_FIREBALL = 'setup-fireball';
+  var WIZARD_EYES = 'wizard-eyes';
+  var WIZARD_COAT = 'wizard-coat';
+
   var keyCode = {
     ESC: 27,
     ENTER: 13
@@ -20,12 +24,10 @@
   var setupSaveButton = setupContainer.querySelector('.setup-submit');
   var similarListElement = setupContainer.querySelector('.setup-similar-list');
   var userNameInput = setupContainer.querySelector('.setup-user-name');
-  var wizardCoatElement = setupContainer.querySelector('.setup-wizard .wizard-coat');
   var wizardCoatInput = setupContainer.querySelector('input[name="coat-color"]');
-  var wizardEyesElement = setupContainer.querySelector('.setup-wizard .wizard-eyes');
   var wizardEyesInput = setupContainer.querySelector('input[name="eyes-color"]');
-  var wizardFireballElement = setupContainer.querySelector('.setup-fireball-wrap');
   var wizardFireballInput = setupContainer.querySelector('input[name="fireball-color"]');
+  var userWizardSetup = setupContainer.querySelector('.setup-player');
 
   var getRandomArrayPos = function (arrayLength) {
     return Math.floor(Math.random() * arrayLength);
@@ -114,22 +116,27 @@
     }
   });
 
-  wizardCoatElement.addEventListener('click', function () {
-    var coatColor = getArrayElement(coatColors);
-    wizardCoatElement.style.fill = coatColor;
-    wizardCoatInput.value = coatColor;
-  });
+  userWizardSetup.addEventListener('click', function (event) {
+    var clickedElement = event.target;
+    var clickedElementFireballColor = getArrayElement(fireballColors);
+    var clickedElementEyesColor = getArrayElement(eyesColors);
+    var clickedElementCoatColor = getArrayElement(coatColors);
 
-  wizardEyesElement.addEventListener('click', function () {
-    var eyesColor = getArrayElement(eyesColors);
-    wizardEyesElement.style.fill = eyesColor;
-    wizardEyesInput.value = eyesColor;
-  });
+    switch (clickedElement.classList.value) {
+      case SETUP_FIREBALL:
+        clickedElement.style.backgroundColor = clickedElementFireballColor;
+        wizardFireballInput.value = clickedElementFireballColor;
+        break;
 
-  wizardFireballElement.addEventListener('click', function () {
-    var fireballColor = getArrayElement(fireballColors);
-    wizardFireballElement.style.backgroundColor = fireballColor;
-    wizardFireballInput.value = fireballColor;
+      case WIZARD_EYES:
+        clickedElement.style.fill = clickedElementEyesColor;
+        wizardEyesInput.value = clickedElementEyesColor;
+        break;
+
+      case WIZARD_COAT:
+        clickedElement.style.fill = clickedElementCoatColor;
+        wizardCoatInput.value = clickedElementCoatColor;
+    }
   });
 
   renderSimilarWizards();
