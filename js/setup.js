@@ -2,7 +2,7 @@
 
 (function () {
   var SIMILAR_WIZARDS_COUNT = 4;
-  var SETUP_FIREBALL = 'setup-fireball';
+  var WIZARD_FIREBALL = 'setup-fireball';
   var WIZARD_EYES = 'wizard-eyes';
   var WIZARD_COAT = 'wizard-coat';
 
@@ -86,6 +86,27 @@
     document.removeEventListener('keydown', onSetupEscKeydown);
   };
 
+  var changeFireballColor = function (element, clickedElement) {
+    var clickedElementColor = getArrayElement(element);
+
+    clickedElement.style.backgroundColor = clickedElementColor;
+    wizardFireballInput.value = clickedElementColor;
+  };
+
+  var changeEyesColor = function (element, clickedElement) {
+    var clickedElementColor = getArrayElement(element);
+
+    clickedElement.style.fill = clickedElementColor;
+    wizardEyesInput.value = clickedElementColor;
+  };
+
+  var changeCoatColor = function (element, clickedElement) {
+    var clickedElementColor = getArrayElement(element);
+
+    clickedElement.style.fill = clickedElementColor;
+    wizardCoatInput.value = clickedElementColor;
+  };
+
   setupOpenButton.addEventListener('click', function () {
     onSetupOpen();
   });
@@ -118,24 +139,18 @@
 
   userWizardSetup.addEventListener('click', function (event) {
     var clickedElement = event.target;
-    var clickedElementFireballColor = getArrayElement(fireballColors);
-    var clickedElementEyesColor = getArrayElement(eyesColors);
-    var clickedElementCoatColor = getArrayElement(coatColors);
 
     switch (clickedElement.classList.value) {
-      case SETUP_FIREBALL:
-        clickedElement.style.backgroundColor = clickedElementFireballColor;
-        wizardFireballInput.value = clickedElementFireballColor;
+      case WIZARD_FIREBALL:
+        changeFireballColor(fireballColors, clickedElement);
         break;
 
       case WIZARD_EYES:
-        clickedElement.style.fill = clickedElementEyesColor;
-        wizardEyesInput.value = clickedElementEyesColor;
+        changeEyesColor(eyesColors, clickedElement);
         break;
 
       case WIZARD_COAT:
-        clickedElement.style.fill = clickedElementCoatColor;
-        wizardCoatInput.value = clickedElementCoatColor;
+        changeCoatColor(coatColors, clickedElement);
     }
   });
 
