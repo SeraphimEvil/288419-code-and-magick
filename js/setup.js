@@ -27,7 +27,7 @@
   var wizardCoatInput = setupContainer.querySelector('input[name="coat-color"]');
   var wizardEyesInput = setupContainer.querySelector('input[name="eyes-color"]');
   var wizardFireballInput = setupContainer.querySelector('input[name="fireball-color"]');
-  var setupUserWizard = setupContainer.querySelector('.setup-player');
+  var userWizardSetup = setupContainer.querySelector('.setup-player');
 
   var getRandomArrayPos = function (arrayLength) {
     return Math.floor(Math.random() * arrayLength);
@@ -86,22 +86,22 @@
     document.removeEventListener('keydown', onSetupEscKeydown);
   };
 
-  var setFireballColor = function (element, clickedElement) {
-    var clickedElementColor = getArrayElement(element);
+  var setFireballColor = function (array, clickedElement) {
+    var clickedElementColor = getArrayElement(array);
 
     clickedElement.style.backgroundColor = clickedElementColor;
     wizardFireballInput.value = clickedElementColor;
   };
 
-  var setEyesColor = function (element, clickedElement) {
-    var clickedElementColor = getArrayElement(element);
+  var setEyesColor = function (array, clickedElement) {
+    var clickedElementColor = getArrayElement(array);
 
     clickedElement.style.fill = clickedElementColor;
     wizardEyesInput.value = clickedElementColor;
   };
 
-  var setCoatColor = function (element, clickedElement) {
-    var clickedElementColor = getArrayElement(element);
+  var setCoatColor = function (array, clickedElement) {
+    var clickedElementColor = getArrayElement(array);
 
     clickedElement.style.fill = clickedElementColor;
     wizardCoatInput.value = clickedElementColor;
@@ -137,7 +137,7 @@
     }
   });
 
-  setupUserWizard.addEventListener('click', function (event) {
+  userWizardSetup.addEventListener('click', function (event) {
     var clickedElement = event.target;
 
     switch (clickedElement.classList.value) {
