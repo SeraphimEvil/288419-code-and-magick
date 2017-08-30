@@ -27,7 +27,7 @@
   var wizardCoatInput = setupContainer.querySelector('input[name="coat-color"]');
   var wizardEyesInput = setupContainer.querySelector('input[name="eyes-color"]');
   var wizardFireballInput = setupContainer.querySelector('input[name="fireball-color"]');
-  var userWizardSetup = setupContainer.querySelector('.setup-player');
+  var setupUserWizard = setupContainer.querySelector('.setup-player');
 
   var getRandomArrayPos = function (arrayLength) {
     return Math.floor(Math.random() * arrayLength);
@@ -86,21 +86,21 @@
     document.removeEventListener('keydown', onSetupEscKeydown);
   };
 
-  var changeFireballColor = function (element, clickedElement) {
+  var setFireballColor = function (element, clickedElement) {
     var clickedElementColor = getArrayElement(element);
 
     clickedElement.style.backgroundColor = clickedElementColor;
     wizardFireballInput.value = clickedElementColor;
   };
 
-  var changeEyesColor = function (element, clickedElement) {
+  var setEyesColor = function (element, clickedElement) {
     var clickedElementColor = getArrayElement(element);
 
     clickedElement.style.fill = clickedElementColor;
     wizardEyesInput.value = clickedElementColor;
   };
 
-  var changeCoatColor = function (element, clickedElement) {
+  var setCoatColor = function (element, clickedElement) {
     var clickedElementColor = getArrayElement(element);
 
     clickedElement.style.fill = clickedElementColor;
@@ -137,20 +137,20 @@
     }
   });
 
-  userWizardSetup.addEventListener('click', function (event) {
+  setupUserWizard.addEventListener('click', function (event) {
     var clickedElement = event.target;
 
     switch (clickedElement.classList.value) {
       case WIZARD_FIREBALL:
-        changeFireballColor(fireballColors, clickedElement);
+        setFireballColor(fireballColors, clickedElement);
         break;
 
       case WIZARD_EYES:
-        changeEyesColor(eyesColors, clickedElement);
+        setEyesColor(eyesColors, clickedElement);
         break;
 
       case WIZARD_COAT:
-        changeCoatColor(coatColors, clickedElement);
+        setCoatColor(coatColors, clickedElement);
     }
   });
 
