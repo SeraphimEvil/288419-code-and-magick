@@ -2,9 +2,12 @@
 
 (function () {
   var SIMILAR_WIZARDS_COUNT = 4;
-  var WIZARD_FIREBALL = 'setup-fireball';
-  var WIZARD_EYES = 'wizard-eyes';
-  var WIZARD_COAT = 'wizard-coat';
+
+  var wizardPart = {
+    FIREBALL: 'setup-fireball',
+    EYES: 'wizard-eyes',
+    COAT: 'wizard-coat'
+  };
 
   var keyCode = {
     ESC: 27,
@@ -71,17 +74,17 @@
   var onSetupEscKeydown = function (event) {
     if (event.keyCode === keyCode.ESC) {
       if (document.activeElement !== userNameInput) {
-        onSetupClose();
+        setupCloseHandler();
       }
     }
   };
 
-  var onSetupOpen = function () {
+  var setupOpenHandler = function () {
     setupContainer.classList.remove('hidden');
     document.addEventListener('keydown', onSetupEscKeydown);
   };
 
-  var onSetupClose = function () {
+  var setupCloseHandler = function () {
     setupContainer.classList.add('hidden');
     document.removeEventListener('keydown', onSetupEscKeydown);
   };
@@ -107,53 +110,61 @@
     wizardCoatInput.value = clickedElementColor;
   };
 
-  setupOpenButton.addEventListener('click', function () {
-    onSetupOpen();
-  });
-
-  setupOpenButton.addEventListener('keydown', function (event) {
+  var setupOpenButtonKeydownHandler = function () {
     if (event.keyCode === keyCode.ENTER) {
-      onSetupOpen();
+      setupOpenHandler();
     }
-  });
+  };
 
-  setupCloseButton.addEventListener('click', function () {
-    onSetupClose();
-  });
+  var setupOpenButtonClickHandler = function () {
+    setupOpenHandler();
+  };
 
-  setupCloseButton.addEventListener('keydown', function (event) {
+  var setupCloseButtonClickHandler = function () {
+    setupCloseHandler();
+  };
+
+  var setupCloseButtonKeydownHandler = function () {
     if (event.keyCode === keyCode.ENTER) {
-      onSetupClose();
+      setupCloseHandler();
     }
-  });
+  };
 
-  setupSaveButton.addEventListener('click', function () {
-    onSetupClose();
-  });
+  var setupSaveButtonClickHandler = function () {
+    setupCloseHandler();
+  };
 
-  setupSaveButton.addEventListener('keydown', function (event) {
+  var setupSaveButtonKeydownHandler = function () {
     if (event.keyCode === keyCode.ENTER) {
-      onSetupClose();
+      setupCloseHandler();
     }
-  });
+  };
 
-  userWizardSetup.addEventListener('click', function (event) {
+  var userWizardSetupClickHandler = function (event) {
     var clickedElement = event.target;
 
     switch (clickedElement.classList.value) {
-      case WIZARD_FIREBALL:
+      case wizardPart.FIREBALL:
         setFireballColor(fireballColors, clickedElement);
         break;
 
-      case WIZARD_EYES:
+      case wizardPart.EYES:
         setEyesColor(eyesColors, clickedElement);
         break;
 
-      case WIZARD_COAT:
+      case wizardPart.COAT:
         setCoatColor(coatColors, clickedElement);
     }
-  });
+  };
 
   renderSimilarWizards();
   setupContainer.querySelector('.setup-similar').classList.remove('hidden');
+
+  setupOpenButton.addEventListener('click', setupOpenButtonClickHandler);
+  setupOpenButton.addEventListener('keydown', setupOpenButtonKeydownHandler);
+  setupCloseButton.addEventListener('click', setupCloseButtonClickHandler);
+  setupCloseButton.addEventListener('keydown', setupCloseButtonKeydownHandler);
+  setupSaveButton.addEventListener('click', setupSaveButtonClickHandler);
+  setupSaveButton.addEventListener('keydown', setupSaveButtonKeydownHandler);
+  userWizardSetup.addEventListener('click', userWizardSetupClickHandler);
 })();
