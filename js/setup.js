@@ -20,17 +20,17 @@
   var eyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
   var fireballColors = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
-  var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
-  var setupContainer = document.querySelector('.setup');
-  var setupOpenButton = document.querySelector('.setup-open');
-  var setupCloseButton = setupContainer.querySelector('.setup-close');
-  var setupSaveButton = setupContainer.querySelector('.setup-submit');
-  var similarListElement = setupContainer.querySelector('.setup-similar-list');
-  var userNameInput = setupContainer.querySelector('.setup-user-name');
-  var wizardCoatInput = setupContainer.querySelector('input[name="coat-color"]');
-  var wizardEyesInput = setupContainer.querySelector('input[name="eyes-color"]');
-  var wizardFireballInput = setupContainer.querySelector('input[name="fireball-color"]');
-  var userWizardSetup = setupContainer.querySelector('.setup-player');
+  var similarWizardTemplateElement = document.querySelector('#similar-wizard-template').content;
+  var setupContainerElement = document.querySelector('.setup');
+  var setupOpenButtonElement = document.querySelector('.setup-open');
+  var setupCloseButtonElement = setupContainerElement.querySelector('.setup-close');
+  var setupSaveButtonElement = setupContainerElement.querySelector('.setup-submit');
+  var similarListElement = setupContainerElement.querySelector('.setup-similar-list');
+  var userNameInputElement = setupContainerElement.querySelector('.setup-user-name');
+  var wizardCoatInputElement = setupContainerElement.querySelector('input[name="coat-color"]');
+  var wizardEyesInputElement = setupContainerElement.querySelector('input[name="eyes-color"]');
+  var wizardFireballInputElement = setupContainerElement.querySelector('input[name="fireball-color"]');
+  var userWizardSetupElement = setupContainerElement.querySelector('.setup-player');
 
   var getRandomArrayPos = function (arrayLength) {
     return Math.floor(Math.random() * arrayLength);
@@ -52,7 +52,7 @@
   };
 
   var renderWizard = function (wizard) {
-    var wizardElement = similarWizardTemplate.cloneNode(true);
+    var wizardElement = similarWizardTemplateElement.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
     wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
@@ -73,19 +73,19 @@
 
   var onSetupEscKeydown = function (event) {
     if (event.keyCode === keyCode.ESC) {
-      if (document.activeElement !== userNameInput) {
+      if (document.activeElement !== userNameInputElement) {
         setupCloseHandler();
       }
     }
   };
 
   var setupOpenHandler = function () {
-    setupContainer.classList.remove('hidden');
+    setupContainerElement.classList.remove('hidden');
     document.addEventListener('keydown', onSetupEscKeydown);
   };
 
   var setupCloseHandler = function () {
-    setupContainer.classList.add('hidden');
+    setupContainerElement.classList.add('hidden');
     document.removeEventListener('keydown', onSetupEscKeydown);
   };
 
@@ -93,54 +93,54 @@
     var clickedElementColor = getArrayElement(array);
 
     clickedElement.style.backgroundColor = clickedElementColor;
-    wizardFireballInput.value = clickedElementColor;
+    wizardFireballInputElement.value = clickedElementColor;
   };
 
   var setEyesColor = function (array, clickedElement) {
     var clickedElementColor = getArrayElement(array);
 
     clickedElement.style.fill = clickedElementColor;
-    wizardEyesInput.value = clickedElementColor;
+    wizardEyesInputElement.value = clickedElementColor;
   };
 
   var setCoatColor = function (array, clickedElement) {
     var clickedElementColor = getArrayElement(array);
 
     clickedElement.style.fill = clickedElementColor;
-    wizardCoatInput.value = clickedElementColor;
+    wizardCoatInputElement.value = clickedElementColor;
   };
 
-  var setupOpenButtonKeydownHandler = function () {
+  var setupOpenButtonElementKeydownHandler = function () {
     if (event.keyCode === keyCode.ENTER) {
       setupOpenHandler();
     }
   };
 
-  var setupOpenButtonClickHandler = function () {
+  var setupOpenButtonElementClickHandler = function () {
     setupOpenHandler();
   };
 
-  var setupCloseButtonClickHandler = function () {
+  var setupCloseButtonElementClickHandler = function () {
     setupCloseHandler();
   };
 
-  var setupCloseButtonKeydownHandler = function () {
+  var setupCloseButtonElementKeydownHandler = function () {
     if (event.keyCode === keyCode.ENTER) {
       setupCloseHandler();
     }
   };
 
-  var setupSaveButtonClickHandler = function () {
+  var setupSaveButtonElementClickHandler = function () {
     setupCloseHandler();
   };
 
-  var setupSaveButtonKeydownHandler = function () {
+  var setupSaveButtonElementKeydownHandler = function () {
     if (event.keyCode === keyCode.ENTER) {
       setupCloseHandler();
     }
   };
 
-  var userWizardSetupClickHandler = function (event) {
+  var userWizardSetupElementClickHandler = function (event) {
     var clickedElement = event.target;
 
     switch (clickedElement.classList.value) {
@@ -158,13 +158,13 @@
   };
 
   renderSimilarWizards();
-  setupContainer.querySelector('.setup-similar').classList.remove('hidden');
+  setupContainerElement.querySelector('.setup-similar').classList.remove('hidden');
 
-  setupOpenButton.addEventListener('click', setupOpenButtonClickHandler);
-  setupOpenButton.addEventListener('keydown', setupOpenButtonKeydownHandler);
-  setupCloseButton.addEventListener('click', setupCloseButtonClickHandler);
-  setupCloseButton.addEventListener('keydown', setupCloseButtonKeydownHandler);
-  setupSaveButton.addEventListener('click', setupSaveButtonClickHandler);
-  setupSaveButton.addEventListener('keydown', setupSaveButtonKeydownHandler);
-  userWizardSetup.addEventListener('click', userWizardSetupClickHandler);
+  setupOpenButtonElement.addEventListener('click', setupOpenButtonElementClickHandler);
+  setupOpenButtonElement.addEventListener('keydown', setupOpenButtonElementKeydownHandler);
+  setupCloseButtonElement.addEventListener('click', setupCloseButtonElementClickHandler);
+  setupCloseButtonElement.addEventListener('keydown', setupCloseButtonElementKeydownHandler);
+  setupSaveButtonElement.addEventListener('click', setupSaveButtonElementClickHandler);
+  setupSaveButtonElement.addEventListener('keydown', setupSaveButtonElementKeydownHandler);
+  userWizardSetupElement.addEventListener('click', userWizardSetupElementClickHandler);
 })();
