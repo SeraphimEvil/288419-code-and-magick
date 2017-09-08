@@ -5,8 +5,6 @@
 
   var wizardNames = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
   var wizardLastNames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-  var coatColors = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-  var eyesColors = ['black', 'red', 'blue', 'yellow', 'green'];
 
   var similarWizardTemplateElement = document.querySelector('#similar-wizard-template').content;
   var setupContainerElement = document.querySelector('.setup');
@@ -34,8 +32,8 @@
   var getWizardParams = function () {
     return {
       name: getArrayElement(wizardNames) + ' ' + getArrayElement(wizardLastNames),
-      coatColor: getArrayElement(coatColors),
-      eyesColor: getArrayElement(eyesColors)
+      coatColor: getArrayElement(window.data.coatColors),
+      eyesColor: getArrayElement(window.data.eyesColors)
     };
   };
 
