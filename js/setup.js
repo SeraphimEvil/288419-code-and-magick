@@ -59,6 +59,9 @@
     similarListElement.appendChild(fragment);
   };
 
+  renderSimilarWizards();
+  setupContainerElement.querySelector('.setup-similar').classList.remove('hidden');
+
   window.colorize(userWizardCoatElement, function (color) {
     userWizardCoatElement.style.fill = color;
     wizardCoatInputElement.value = color;
@@ -73,7 +76,4 @@
     userWizardFireballElement.style.backgroundColor = color;
     wizardFireballInputElement.value = color;
   });
-
-  renderSimilarWizards();
-  setupContainerElement.querySelector('.setup-similar').classList.remove('hidden');
 })();
